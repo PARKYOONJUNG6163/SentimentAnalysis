@@ -14,7 +14,7 @@ import pymysql
 
 
 def get_article_body() :
-    conn = pymysql.connect(host = "147.43.122.131", user = "root", password = "1234", charset = "utf8")
+    conn = pymysql.connect(host = "", user = "root", password = "", charset = "utf8")
     curs = conn.cursor()
     curs.execute("use yahoo_news ;")
     query = """select * from galaxys; """
