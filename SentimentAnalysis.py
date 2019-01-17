@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[3]:
+# In[2]:
 
 
 import re
@@ -28,9 +28,20 @@ def get_article_body() :
     print(body_list)
 
 
-# In[17]:
+# In[9]:
 
 
-body_list = []
-get_article_body()
+dict_list = []
+words_list = []
+
+f = open('SentiWordNet_3.0.0_20130122.txt')
+for line in f:
+    if line.startswith("#") :
+        continue
+    split_line = line.split("\t")
+    words = split_line[4]
+    synonym_list = [words.split("#")[0] for w in words] #동의어
+    for w in words : # 단어들만 모아둔 사전 만들기
+        words_list.append(w)
+    dict_list.append([split_line[0],split_line[1],split_line[2],split_line[3],synonym_list,split_line[5]]) # 모든 정보 포함하는 사전 만들기
 
