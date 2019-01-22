@@ -25,7 +25,6 @@ stop_words = set(stopwords.words('english')) # 정지단어집합 만들기
 def get_score(sentense_list) :   
     for sentence in sentense_list :
         filtered_words = []
-        print(sentence)
         sentence = sentence.lower() # 소문자로
         retokenize = RegexpTokenizer("[\w]+") 
         split_sentence = retokenize.tokenize(sentence) # 토큰 단위로 자르기
@@ -33,8 +32,7 @@ def get_score(sentense_list) :
         wnl = nltk.WordNetLemmatizer() # 원형 복원
         
         for f in filtered_sentence :
-            filtered_words.append(wnl.lemmatize(str(f))) # 원형 복원
-        print(filtered_words)    
+            filtered_words.append(wnl.lemmatize(str(f))) # 원형 복원   
         pos_tagged = nltk.pos_tag(filtered_words)
         
         positive_score = 0.0
@@ -61,8 +59,6 @@ def get_score(sentense_list) :
         if (len(pos_tagged) > 0):            
             positive_score/=len(pos_tagged)
             negative_score/=len(pos_tagged)
-            print(positive_score)
-            print(negative_score)
   
             if positive_score > negative_score :
                 print("positive")
@@ -78,10 +74,10 @@ def get_score(sentense_list) :
 
 
 def get_body_sent() :
-    conn = pymysql.connect(host = "147.43.122.131", user = "root", password = "1234", charset = "utf8")
+    conn = pymysql.connect(host = "", user = "root", password = "", charset = "utf8")
     curs = conn.cursor()
-    curs.execute("use yahoo_news ;")
-    query = """select * from galaxys_articles; """
+    curs.execute("use ;")
+    query = """select * from ; """
     curs.execute(query)
     all_rows = curs.fetchall()
     body_list = []
